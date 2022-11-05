@@ -1,22 +1,19 @@
-import "../loadEnvirontment.js";
-import express from "express";
 import chalk from "chalk";
 import debugCreator from "debug";
-import { error } from "console";
+import app from "./app.js";
 const debug = debugCreator("robots: server");
 
-const app = express();
-
-const startServer = async (port: string) => {
+const startServer = async (port: number) => {
   await new Promise((resolve, reject) => {
     const server = app.listen(port, () => {
       debug(chalk.yellow(`Server listening on: http://localhost:${port}`));
+      resolve(server);
     });
-    resolve(server);
-    server.on("error", (error) => {
+
+    server.on("error", (error: Error) => {
       debug(chalk.red("Error on starting server", error.message));
+      reject(error);
     });
-    reject(error);
   });
 };
 
