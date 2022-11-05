@@ -6,7 +6,7 @@ import { error } from "console";
 const debug = debugCreator("robots: server");
 
 const app = express();
-
+app.disable("x-powered-by");
 const startServer = async (port: string) => {
   await new Promise((resolve, reject) => {
     const server = app.listen(port, () => {
