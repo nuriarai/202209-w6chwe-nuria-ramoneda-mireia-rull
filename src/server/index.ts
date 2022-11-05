@@ -3,11 +3,9 @@ import debugCreator from "debug";
 import app from "./app.js";
 const debug = debugCreator("robots: server");
 
-const app = express();
 app.disable("x-powered-by");
 
 const startServer = async (port: number) => {
-
   await new Promise((resolve, reject) => {
     const server = app.listen(port, () => {
       debug(chalk.yellow(`Server listening on: http://localhost:${port}`));
