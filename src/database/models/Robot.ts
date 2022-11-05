@@ -11,4 +11,6 @@ const robotSchema = new Schema({
 });
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export const Robot = model("Robot", robotSchema, "robots");
+const Robot = model("Robot", robotSchema, "robots");
+
+export default Robot;
