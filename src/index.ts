@@ -16,7 +16,7 @@ try {
   const robots = await Robot.find();
   debug(robots);
 } catch (error: unknown) {
-  console.log("Error on connecting to database", (error as Error).message);
+  debug("Error on connecting to database", (error as Error).message);
 }
 
 const port = process.env.PORT;
