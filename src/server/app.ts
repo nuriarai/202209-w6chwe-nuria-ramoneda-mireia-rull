@@ -6,21 +6,15 @@ import cors from "cors";
 
 const app = express();
 
-app.use(morgan("dev"));
+app.use(cors());
+
 app.use(express.json());
 
-app.use(
-  cors({
-    origin: [
-      "https://202209-w6chwe-nuria-ramoneda-mireia-r.netlify.app/",
-      "http://localhost:3000",
-    ],
-  })
-);
+app.use("/robots", robotsRouter);
+
+app.use(morgan("dev"));
 
 app.disable("x-powered-by");
-
-app.use("/robots", robotsRouter);
 
 app.use(notFoundError);
 
