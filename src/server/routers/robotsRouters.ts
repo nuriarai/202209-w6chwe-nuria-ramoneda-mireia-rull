@@ -1,11 +1,11 @@
-import "../loadEnvirontment.js";
+import "../../loadEnvirontment.js";
 import express from "express";
-import { getRobots, getRobotsById } from "../controllers/robotsControllers";
+import { getRobots, getRobotById } from "../controllers/robotsControllers.js";
 
 // eslint-disable-next-line new-cap
 const robotsRouter = express.Router();
 
 robotsRouter.get("/", getRobots);
-robotsRouter.get("/robot/:id", getRobotsById);
+robotsRouter.get("/:id", getRobotById);
 
 export default robotsRouter;
