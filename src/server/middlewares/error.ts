@@ -19,7 +19,7 @@ export const generalError = (
   debug(chalk.red(error.message));
 
   const statusCode = error.statusCode ?? 500;
-  const publicMessage = error.publicMessage || "General error";
+  const publicMessage = error.publicMessage || "Something went wrong";
 
   res.status(statusCode).json({ error: publicMessage });
 };
