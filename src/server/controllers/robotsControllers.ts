@@ -20,13 +20,45 @@ export const getRobots = async (
   }
 };
 
-export const getRobotById = async (req: Request, res: Response) => {
-  const { id } = req.params;
-  const robot = await Robot.findById(id);
-  if (!robot) {
-    res.status(404).json({ error: "Robot not found" });
-    return;
-  }
+export const getRobotById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { id } = req.params;
+    const robot = await Robot.findById(id);
+    if (!robot) {
+      res.status(404).json({ error: "Robot not found" });
+      return;
+    }
 
-  res.status(200).json({ robot });
+    res.status(200).json({ robot });
+  } catch (error: unknown) {
+    const customError = new CustomError(
+      (error as Error).message,
+      500,
+      "Database error"
+    );
+    next(customError);
+  }
+};
+
+export const addRobot = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    await Robot.create(req.body);
+
+    res.status(201).json(req.body);
+  } catch (error: unknown) {
+    const customError = new CustomError(
+      (error as Error).message,
+      500,
+      "Database error"
+    );
+    next(customError);
+  }
 };
