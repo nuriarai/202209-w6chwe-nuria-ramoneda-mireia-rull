@@ -50,9 +50,8 @@ export const addRobot = async (
   next: NextFunction
 ) => {
   try {
-    await Robot.create(req.body);
-
-    res.status(201).json(req.body);
+    const newRobot = await Robot.create(req.body);
+    res.status(201).json(newRobot);
   } catch (error: unknown) {
     const customError = new CustomError(
       (error as Error).message,

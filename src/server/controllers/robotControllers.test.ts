@@ -3,6 +3,8 @@ import Robot from "../../database/models/Robot";
 import mockRobot from "../../mocks/mockRobot";
 import { getRobots } from "./robotsControllers";
 
+beforeEach(() => jest.clearAllMocks());
+
 const res: Partial<Response> = {
   status: jest.fn().mockReturnThis(),
   json: jest.fn().mockReturnThis(),
