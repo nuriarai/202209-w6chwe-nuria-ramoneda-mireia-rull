@@ -5,6 +5,7 @@ import {
   getRobotById,
   addRobot,
   deleteRobotbyId,
+  updateRobot,
 } from "../controllers/robotsControllers.js";
 import authentication from "../middlewares/authentication.js";
 
@@ -15,5 +16,7 @@ robotsRouter.get("/", getRobots);
 robotsRouter.get("/:id", getRobotById);
 robotsRouter.post("/create", addRobot);
 robotsRouter.delete("/delete/:idRobot", authentication, deleteRobotbyId);
+robotsRouter.put("/update/", updateRobot);
+
 
 export default robotsRouter;
