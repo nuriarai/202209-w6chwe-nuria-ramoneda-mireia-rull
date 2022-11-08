@@ -1,7 +1,7 @@
 import chalk from "chalk";
 import debugCreator from "debug";
 import app from "./app.js";
-const debug = debugCreator("robots: server");
+const debug = debugCreator("robots: server: root");
 
 app.disable("x-powered-by");
 

@@ -1,12 +1,21 @@
 import chalk from "chalk";
 import type { NextFunction, Request, Response } from "express";
 import debugCreator from "debug";
-import type CustomError from "../../CustomError/CustomError";
+import CustomError from "../../CustomError/CustomError";
 
-const debug = debugCreator("robots: root");
+const debug = debugCreator("robots: server: middlewares: root");
 
-export const notFoundError = (req: Request, res: Response) => {
-  res.status(404).json({ message: "unknown enpoint" });
+export const notFoundError = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const error = new CustomError(
+    "Endpoint not found",
+    404,
+    "Endpoint not found"
+  );
+  next(error);
 };
 
 export const generalError = (
