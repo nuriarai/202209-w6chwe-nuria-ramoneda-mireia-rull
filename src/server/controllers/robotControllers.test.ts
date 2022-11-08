@@ -16,7 +16,7 @@ describe("Given a getRobots controller", () => {
     test("Then it should call its method status with a 200 code ", async () => {
       const statusCode = 200;
 
-      Robot.find = jest.fn().mockReturnValueOnce(mockRobot);
+      Robot.find = jest.fn();
       await getRobots(null, res as Response, null);
 
       expect(res.status).toHaveBeenCalledWith(statusCode);
