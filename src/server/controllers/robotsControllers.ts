@@ -1,13 +1,13 @@
 import type { NextFunction, Request, Response } from "express";
 import CustomError from "../../CustomError/CustomError.js";
 import Robot from "../../database/models/Robot.js";
-// Import jwt from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
-// const tokkenMissingErorr = new CustomError(
-//   "Token is missing",
-//   401,
-//   "Token is missing"
-// );
+const tokkenMissingErorr = new CustomError(
+  "Token is missing",
+  401,
+  "Token is missing"
+);
 
 export const getRobots = async (
   req: Request,
@@ -74,25 +74,25 @@ export const deleteRobotbyId = async (
   res: Response,
   next: NextFunction
 ) => {
-  // Const authHeader = req.header("Authorization");
+  const authHeader = req.header("Authorization");
 
-  // if (!authHeader) {
-  //   throw tokkenMissingErorr;
-  // }
+  if (!authHeader) {
+    throw tokkenMissingErorr;
+  }
 
-  // const token = authHeader.replace(/^Bearer:\s*/, "");
+  const token = authHeader.replace(/^Bearer:\s*/, "");
 
-  // if (!token) {
-  //   throw tokkenMissingErorr;
-  // }
+  if (!token) {
+    throw tokkenMissingErorr;
+  }
 
-  // const secret = process.env.JWT_SECRET;
+  const secret = process.env.JWT_SECRET;
 
-  // jwt.verify(token, secret, (error) => {
-  //   if (error) {
-  //     throw new CustomError("Unauthorized token", 401, "Unauthorized token");
-  //   }
-  // });
+  jwt.verify(token, secret, (error) => {
+    if (error) {
+      throw new CustomError("Unauthorized token", 401, "Unauthorized token");
+    }
+  });
 
   const { idRobot } = req.params;
 
