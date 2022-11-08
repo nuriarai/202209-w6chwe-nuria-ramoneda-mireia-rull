@@ -6,7 +6,6 @@ import {
   addRobot,
   deleteRobotbyId,
 } from "../controllers/robotsControllers.js";
-import authentication from "../middlewares/authentication.js";
 
 // eslint-disable-next-line new-cap
 const robotsRouter = express.Router();
@@ -14,6 +13,6 @@ const robotsRouter = express.Router();
 robotsRouter.get("/", getRobots);
 robotsRouter.get("/:id", getRobotById);
 robotsRouter.post("/create", addRobot);
-robotsRouter.delete("/delete/:idRobot", authentication, deleteRobotbyId);
+robotsRouter.delete("/delete/:idRobot", deleteRobotbyId);
 
 export default robotsRouter;
