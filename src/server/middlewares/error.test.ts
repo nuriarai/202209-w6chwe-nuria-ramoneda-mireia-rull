@@ -34,8 +34,9 @@ describe("Given a generalError middleware", () => {
     status: jest.fn().mockReturnThis(),
     json: jest.fn().mockReturnThis(),
   };
+
   describe("When it receives a response", () => {
-    test("Then it should call its method status with the received status code", () => {
+    test("Then it should call its method status with the status code 400", () => {
       const statusCode = 400;
       const error = new CustomError("", 400, "");
       generalError(error, null, res as Response, () => {});
