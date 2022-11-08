@@ -1,6 +1,6 @@
-import "./loadEnvirontment.js";
+import "../../loadEnvirontment.js";
 import type { NextFunction, Request, Response } from "express";
-import CustomError from "../../CustomError/CustomError";
+import CustomError from "../../CustomError/CustomError.js";
 import jwt from "jsonwebtoken";
 
 const tokkenMissingErorr = new CustomError(
