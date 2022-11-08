@@ -116,3 +116,31 @@ export const deleteRobotbyId = async (
     next(customError);
   }
 };
+
+export const updateRobot = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  const { _id } = req.body;
+
+  try {
+    const robot = await Robot.findById(_id);
+
+    if (!robot) {
+      res.status(404).json({ message: "Robot not found" });
+      return;
+    }
+
+    await Robot.findByIdAndUpdate(_id, req.body);
+    res.status(200).json(req.body);
+  } catch (error: unknown) {
+    const customError = new CustomError(
+      (error as Error).message,
+      500,
+      "Database error updating"
+    );
+    next(customError);
+  }
+};
